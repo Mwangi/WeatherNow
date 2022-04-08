@@ -27,6 +27,7 @@ class Customizations: UIView{
             self.layer.borderColor = borderColor.cgColor
         }
     }
+    
     @IBInspectable var cornerRadius: CGFloat {
         
         get{
