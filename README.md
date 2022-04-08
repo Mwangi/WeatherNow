@@ -1,1 +1,2 @@
-# WeatherNow Simple weather app to showcase UIKit and Swift usage
+# WeatherNow
+Simple weather app to showcase UIKit and Swift usage
