@@ -16,6 +16,9 @@
 		639E8D2C280009E80034E429 /* WeatherNowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639E8D2B280009E80034E429 /* WeatherNowTests.swift */; };
 		639E8D36280009E80034E429 /* WeatherNowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639E8D35280009E80034E429 /* WeatherNowUITests.swift */; };
 		639E8D38280009E80034E429 /* WeatherNowUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639E8D37280009E80034E429 /* WeatherNowUITestsLaunchTests.swift */; };
+		639E8D4628000BB10034E429 /* InternalDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639E8D4528000BB10034E429 /* InternalDB.swift */; };
+		639E8D4828000BC70034E429 /* Customizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639E8D4728000BC70034E429 /* Customizations.swift */; };
+		639E8D4A28000BFB0034E429 /* UINavigationBarTransparent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639E8D4928000BFB0034E429 /* UINavigationBarTransparent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		639E8D31280009E80034E429 /* WeatherNowUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherNowUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		639E8D35280009E80034E429 /* WeatherNowUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherNowUITests.swift; sourceTree = "<group>"; };
 		639E8D37280009E80034E429 /* WeatherNowUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherNowUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		639E8D4528000BB10034E429 /* InternalDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalDB.swift; sourceTree = "<group>"; };
+		639E8D4728000BC70034E429 /* Customizations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customizations.swift; sourceTree = "<group>"; };
+		639E8D4928000BFB0034E429 /* UINavigationBarTransparent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBarTransparent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +105,7 @@
 		639E8D13280009E50034E429 /* WeatherNow */ = {
 			isa = PBXGroup;
 			children = (
+				639E8D4428000B990034E429 /* Helpers */,
 				639E8D14280009E50034E429 /* AppDelegate.swift */,
 				639E8D16280009E50034E429 /* SceneDelegate.swift */,
 				639E8D18280009E50034E429 /* ViewController.swift */,
@@ -125,6 +132,16 @@
 				639E8D37280009E80034E429 /* WeatherNowUITestsLaunchTests.swift */,
 			);
 			path = WeatherNowUITests;
+			sourceTree = "<group>";
+		};
+		639E8D4428000B990034E429 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				639E8D4528000BB10034E429 /* InternalDB.swift */,
+				639E8D4728000BC70034E429 /* Customizations.swift */,
+				639E8D4928000BFB0034E429 /* UINavigationBarTransparent.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,8 +275,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				639E8D4A28000BFB0034E429 /* UINavigationBarTransparent.swift in Sources */,
 				639E8D19280009E50034E429 /* ViewController.swift in Sources */,
 				639E8D15280009E50034E429 /* AppDelegate.swift in Sources */,
+				639E8D4628000BB10034E429 /* InternalDB.swift in Sources */,
+				639E8D4828000BC70034E429 /* Customizations.swift in Sources */,
 				639E8D17280009E50034E429 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -442,6 +462,7 @@
 				DEVELOPMENT_TEAM = YG7M368DZ6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeatherNow/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Weather Today";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -470,6 +491,7 @@
 				DEVELOPMENT_TEAM = YG7M368DZ6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeatherNow/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Weather Today";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
