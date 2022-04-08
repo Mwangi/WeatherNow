@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		639E5E502800519200180E03 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639E5E4F2800519200180E03 /* Colors.swift */; };
+		639E5E53280066C800180E03 /* landingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639E5E52280066C800180E03 /* landingViewController.swift */; };
 		639E8D15280009E50034E429 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639E8D14280009E50034E429 /* AppDelegate.swift */; };
 		639E8D17280009E50034E429 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639E8D16280009E50034E429 /* SceneDelegate.swift */; };
 		639E8D19280009E50034E429 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639E8D18280009E50034E429 /* ViewController.swift */; };
@@ -19,6 +21,7 @@
 		639E8D4628000BB10034E429 /* InternalDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639E8D4528000BB10034E429 /* InternalDB.swift */; };
 		639E8D4828000BC70034E429 /* Customizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639E8D4728000BC70034E429 /* Customizations.swift */; };
 		639E8D4A28000BFB0034E429 /* UINavigationBarTransparent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639E8D4928000BFB0034E429 /* UINavigationBarTransparent.swift */; };
+		639E8D4E28002E810034E429 /* ServiceCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639E8D4D28002E800034E429 /* ServiceCall.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		639E5E4F2800519200180E03 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		639E5E52280066C800180E03 /* landingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = landingViewController.swift; sourceTree = "<group>"; };
 		639E8D11280009E50034E429 /* WeatherNow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherNow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		639E8D14280009E50034E429 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		639E8D16280009E50034E429 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +60,7 @@
 		639E8D4528000BB10034E429 /* InternalDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalDB.swift; sourceTree = "<group>"; };
 		639E8D4728000BC70034E429 /* Customizations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customizations.swift; sourceTree = "<group>"; };
 		639E8D4928000BFB0034E429 /* UINavigationBarTransparent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBarTransparent.swift; sourceTree = "<group>"; };
+		639E8D4D28002E800034E429 /* ServiceCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCall.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +88,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		639E5E51280066B400180E03 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				639E5E52280066C800180E03 /* landingViewController.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		639E8D08280009E50034E429 = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +119,7 @@
 		639E8D13280009E50034E429 /* WeatherNow */ = {
 			isa = PBXGroup;
 			children = (
+				639E5E51280066B400180E03 /* Classes */,
 				639E8D4428000B990034E429 /* Helpers */,
 				639E8D14280009E50034E429 /* AppDelegate.swift */,
 				639E8D16280009E50034E429 /* SceneDelegate.swift */,
@@ -140,6 +155,8 @@
 				639E8D4528000BB10034E429 /* InternalDB.swift */,
 				639E8D4728000BC70034E429 /* Customizations.swift */,
 				639E8D4928000BFB0034E429 /* UINavigationBarTransparent.swift */,
+				639E8D4D28002E800034E429 /* ServiceCall.swift */,
+				639E5E4F2800519200180E03 /* Colors.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -276,7 +293,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				639E8D4A28000BFB0034E429 /* UINavigationBarTransparent.swift in Sources */,
+				639E5E502800519200180E03 /* Colors.swift in Sources */,
 				639E8D19280009E50034E429 /* ViewController.swift in Sources */,
+				639E5E53280066C800180E03 /* landingViewController.swift in Sources */,
+				639E8D4E28002E810034E429 /* ServiceCall.swift in Sources */,
 				639E8D15280009E50034E429 /* AppDelegate.swift in Sources */,
 				639E8D4628000BB10034E429 /* InternalDB.swift in Sources */,
 				639E8D4828000BC70034E429 /* Customizations.swift in Sources */,
