@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		639E5E502800519200180E03 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639E5E4F2800519200180E03 /* Colors.swift */; };
 		639E5E53280066C800180E03 /* landingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639E5E52280066C800180E03 /* landingViewController.swift */; };
+		639E5E552807012200180E03 /* weatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639E5E542807012200180E03 /* weatherTableViewCell.swift */; };
 		639E8D15280009E50034E429 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639E8D14280009E50034E429 /* AppDelegate.swift */; };
 		639E8D17280009E50034E429 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639E8D16280009E50034E429 /* SceneDelegate.swift */; };
 		639E8D19280009E50034E429 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639E8D18280009E50034E429 /* ViewController.swift */; };
@@ -44,6 +45,7 @@
 /* Begin PBXFileReference section */
 		639E5E4F2800519200180E03 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		639E5E52280066C800180E03 /* landingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = landingViewController.swift; sourceTree = "<group>"; };
+		639E5E542807012200180E03 /* weatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weatherTableViewCell.swift; sourceTree = "<group>"; };
 		639E8D11280009E50034E429 /* WeatherNow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherNow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		639E8D14280009E50034E429 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		639E8D16280009E50034E429 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				639E5E52280066C800180E03 /* landingViewController.swift */,
+				639E5E542807012200180E03 /* weatherTableViewCell.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 				639E5E53280066C800180E03 /* landingViewController.swift in Sources */,
 				639E8D4E28002E810034E429 /* ServiceCall.swift in Sources */,
 				639E8D15280009E50034E429 /* AppDelegate.swift in Sources */,
+				639E5E552807012200180E03 /* weatherTableViewCell.swift in Sources */,
 				639E8D4628000BB10034E429 /* InternalDB.swift in Sources */,
 				639E8D4828000BC70034E429 /* Customizations.swift in Sources */,
 				639E8D17280009E50034E429 /* SceneDelegate.swift in Sources */,
