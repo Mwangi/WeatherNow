@@ -131,5 +131,13 @@ class InternalDB{
         formatter.dateFormat = "dd/MM/yyyy hh.mm a"//08/07/2020 09.59 AM
         return (formatter.string(from: Date()) as NSString) as String
     }
+    
+    //MARK: Just an alertview
+    func showAlerts(_ tle:String,mg:String,viewcontroller:UIViewController){
+        let alert = UIAlertController(title: tle, message: mg, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler:nil)
+        alert.addAction(action)
+        viewcontroller.present(alert, animated: true, completion: nil)
+    }
 
 }

@@ -23,13 +23,13 @@ class ServiceCall{
     
     func fetchcurrentweather(lat:String, long:String){
         requesttype = "CURRENT"
-        requeststr = "weather?lat=\(lat)&lon=\(long)&appid=\(db.getAPIKEY())"
+        requeststr = "weather?lat=\(lat)&lon=\(long)&appid=\(db.getAPIKEY())&units=metric"
         ConnectToService(requeststr: requeststr)
     }
     
     func fetchweatherforecast(lat:String, long:String){
         requesttype = "FORECAST"
-        requeststr = "forecast?lat=\(lat)&lon=\(long)&appid=\(db.getAPIKEY())"
+        requeststr = "forecast?lat=\(lat)&lon=\(long)&appid=\(db.getAPIKEY())&units=metric"
         ConnectToService(requeststr: requeststr)
     }
     
@@ -136,12 +136,12 @@ class ServiceCall{
     
     func ProcessResponse(ResultFromServer: NSString){
         
-        self.delegate?.serviceCallStringResponse(ResultFromServer: ResultFromServer as String, RequestType: requesttype)
+        self.delegate?.serviceCallStringResponse(ResultFromServer: ResultFromServer, RequestType: requesttype)
         
     }
 
 }
 
 public protocol ServiceCallDelegate {
-    func serviceCallStringResponse(ResultFromServer: String, RequestType: String)
+    func serviceCallStringResponse(ResultFromServer: NSString, RequestType: String)
 }
