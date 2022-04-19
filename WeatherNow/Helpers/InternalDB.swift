@@ -65,9 +65,104 @@ class InternalDB{
         return prefs.string(forKey: "LASTUPDATED")!
     }
     
-    /*
+    func savetemperatureLbl(_ data:String){
+        prefs.setValue(data, forKey: "temperatureLbl")
+    }
+    
+    func gettemperatureLbl()->String{
+        let check=prefs.string( forKey: "temperatureLbl")
+        if check==nil {
+            return ""
+        }
+        return prefs.string(forKey: "temperatureLbl")!
+    }
+    
+    func saveminLbl(_ data:String){
+        prefs.setValue(data, forKey: "minLbl")
+    }
+    
+    func getminLbl()->String{
+        let check=prefs.string( forKey: "minLbl")
+        if check==nil {
+            return ""
+        }
+        return prefs.string(forKey: "minLbl")!
+    }
+    
+    func savecurrentLbl(_ data:String){
+        prefs.setValue(data, forKey: "currentLbl")
+    }
+    
+    func getcurrentLbl()->String{
+        let check=prefs.string( forKey: "currentLbl")
+        if check==nil {
+            return ""
+        }
+        return prefs.string(forKey: "currentLbl")!
+    }
+    
+    func savemaxLbl(_ data:String){
+        prefs.setValue(data, forKey: "maxLbl")
+    }
+    
+    func getmaxLbl()->String{
+        let check=prefs.string( forKey: "maxLbl")
+        if check==nil {
+            return ""
+        }
+        return prefs.string(forKey: "maxLbl")!
+    }
+    
+    func savecurrentcondition(_ data:String){
+        prefs.setValue(data, forKey: "currentcondition")
+    }
+    
+    func getcurrentcondition()->String{
+        let check=prefs.string( forKey: "currentcondition")
+        if check==nil {
+            return ""
+        }
+        return prefs.string(forKey: "currentcondition")!
+    }
+    
+    func savedayweatherarray(_ data:String){
+        prefs.setValue(data, forKey: "dayweatherarray")
+    }
+    
+    func getdayweatherarray()->String{
+        let check=prefs.string( forKey: "dayweatherarray")
+        if check==nil {
+            return ""
+        }
+        return prefs.string(forKey: "dayweatherarray")!
+    }
+    
+    func savemaxweatherarray(_ data:String){
+        prefs.setValue(data, forKey: "maxweatherarray")
+    }
+    
+    func getmaxweatherarray()->String{
+        let check=prefs.string( forKey: "maxweatherarray")
+        if check==nil {
+            return ""
+        }
+        return prefs.string(forKey: "maxweatherarray")!
+    }
+    
+    func savetypeweatherarray(_ data:String){
+        prefs.setValue(data, forKey: "typeweatherarray")
+    }
+    
+    func gettypeweatherarray()->String{
+        let check=prefs.string( forKey: "typeweatherarray")
+        if check==nil {
+            return ""
+        }
+        return prefs.string(forKey: "typeweatherarray")!
+    }
+  
     //MARK: Base64 Encryption: Currently not in use
-     
+    /*
     func EncryptDataBase64(_ DataToSend:String)->NSString{
         let DataToSend = DataToSend
         
@@ -128,7 +223,7 @@ class InternalDB{
     func generateCurrentTimeStamp () -> String {
         let formatter = DateFormatter()
         formatter.timeZone = TimeZone.current
-        formatter.dateFormat = "dd/MM/yyyy hh.mm a"//08/07/2020 09.59 AM
+        formatter.dateFormat = "MMM dd, yyyy hh:mm:ss a"
         return (formatter.string(from: Date()) as NSString) as String
     }
     
@@ -140,4 +235,44 @@ class InternalDB{
         viewcontroller.present(alert, animated: true, completion: nil)
     }
 
+//    func ConvertDate(date:String) -> String{
+//        //Date formatter
+//        let formatter = DateFormatter()
+//        formatter.dateFormat = "EEEE, MMM d"
+//        formatter.date(from: date)
+//        return date
+//    }
+    
+    //MARK: Internet Connection Checker
+    func isConnectedToNetwork() -> Bool {
+        
+        var zeroAddress = sockaddr_in(sin_len: 0, sin_family: 0, sin_port: 0, sin_addr: in_addr(s_addr: 0), sin_zero: (0, 0, 0, 0, 0, 0, 0, 0))
+        zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
+        zeroAddress.sin_family = sa_family_t(AF_INET)
+        
+        let defaultRouteReachability = withUnsafePointer(to: &zeroAddress) {
+            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {zeroSockAddress in
+                SCNetworkReachabilityCreateWithAddress(nil, zeroSockAddress)
+            }
+        }
+        
+        var flags: SCNetworkReachabilityFlags = SCNetworkReachabilityFlags(rawValue: 0)
+        if SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) == false {
+            return false
+        }
+        
+        /* Only Working for WIFI
+         let isReachable = flags == .reachable
+         let needsConnection = flags == .connectionRequired
+         
+         return isReachable && !needsConnection
+         */
+        
+        // Working for Cellular and WIFI
+        let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
+        let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
+        let ret = (isReachable && !needsConnection)
+        
+        return ret
+    }
 }

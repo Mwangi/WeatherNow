@@ -14,6 +14,7 @@ class landingViewController: UIViewController, ServiceCallDelegate, UITableViewD
     @IBOutlet weak var climateImg: UIImageView!
     @IBOutlet weak var climatetableview: UITableView!
     @IBOutlet weak var temperatureLbl: UILabel!
+    @IBOutlet weak var lastupdateLbl: UILabel!
     
     @IBOutlet weak var minLbl: UILabel!
     @IBOutlet weak var currentLbl: UILabel!
@@ -39,6 +40,15 @@ class landingViewController: UIViewController, ServiceCallDelegate, UITableViewD
         // Do any additional setup after loading the view.
         service.delegate = self
         
+        var lastupdate = ""
+        if(db.getLastUpdated() == ""){
+            lastupdate = "N/A"
+        }
+        else{
+            lastupdate = db.getLastUpdated()
+        }
+        lastupdateLbl.text = "Last Updated:\n\(lastupdate)"
+        
         //MARK: Getting user's co-ordinates
         locationManager.requestWhenInUseAuthorization()
         var currentLoc: CLLocation!
@@ -51,7 +61,41 @@ class landingViewController: UIViewController, ServiceCallDelegate, UITableViewD
             long = String(format: "%f", currentLoc.coordinate.longitude)
         }
         
-        service.fetchcurrentweather(lat: lat, long: long)
+        //MARK: Checks if one has internet connectivity before making call
+        if (db.isConnectedToNetwork()){
+            service.fetchcurrentweather(lat: lat, long: long)
+        }
+        else{
+            //MARK: Get saved data
+            temperatureLbl.text = db.gettemperatureLbl()
+            minLbl.text = db.getminLbl()
+            currentLbl.text = db.getcurrentLbl()
+            maxLbl.text = db.getmaxLbl()
+            currentcondition = db.getcurrentcondition()
+            
+            if(currentcondition == "Cloudy" || currentcondition == "Clouds"){
+                self.dataView.backgroundColor = color.colorCloudy
+                climateImg.image = UIImage(named:"Cloudy")
+            }
+            else if(currentcondition == "Sunny" || currentcondition == "Sun"){
+                self.dataView.backgroundColor = color.colorSunny
+                climateImg.image = UIImage(named:"Sunny")
+            }
+            else if(currentcondition == "Rainy" || currentcondition == "Rain"){
+                self.dataView.backgroundColor = color.colorRainy
+                climateImg.image = UIImage(named:"Rainy")
+            }
+            
+            dayweatherarray = db.getdayweatherarray().components(separatedBy: ",")
+            maxweatherarray = db.getmaxweatherarray().components(separatedBy: ",")
+            typeweatherarray = db.gettypeweatherarray().components(separatedBy: ",")
+            
+            climatetableview.delegate = self
+            climatetableview.dataSource = self
+            climatetableview.tableFooterView = UIView(frame: CGRect.zero)
+            climatetableview.reloadData()
+        }
+        
     }
     
     func serviceCallStringResponse(ResultFromServer: NSString, RequestType: String) {
@@ -79,6 +123,7 @@ class landingViewController: UIViewController, ServiceCallDelegate, UITableViewD
                         let conditionweather = weatherListing.main
                         print(conditionweather!)
                         currentcondition = "\(conditionweather!)"
+                        db.savecurrentcondition(currentcondition)
                     }
                     
                     print(status)
@@ -88,9 +133,13 @@ class landingViewController: UIViewController, ServiceCallDelegate, UITableViewD
                     maxtemperature = "\(mainweather.temp_max!)"
                     
                     temperatureLbl.text = "\(currenttemperature)°\n\(currentcondition)"
+                    db.savetemperatureLbl("\(currenttemperature)°\n\(currentcondition)")
                     minLbl.text = "\(mintemperature)°\nmin"
+                    db.saveminLbl("\(mintemperature)°\nmin")
                     currentLbl.text = "\(currenttemperature)°\nCurrent"
+                    db.savecurrentLbl("\(currenttemperature)°\nCurrent")
                     maxLbl.text = "\(maxtemperature)°\nmax"
+                    db.savemaxLbl("\(maxtemperature)°\nmax")
                     
                     if(currentcondition == "Cloudy" || currentcondition == "Clouds"){
                         self.dataView.backgroundColor = color.colorCloudy
@@ -127,6 +176,7 @@ class landingViewController: UIViewController, ServiceCallDelegate, UITableViewD
                         
                         dateweather = weatherListing.dt_txt!
                         print(dateweather)
+                        dateweather = dateweather.convertDateString()!
                         
                         tempe = "\(weatherListing.main.temp!)"
                         print(tempe)
@@ -144,8 +194,11 @@ class landingViewController: UIViewController, ServiceCallDelegate, UITableViewD
                     }
                     
                     print("\nDAYS: \(dayweatherarray)")
+                    db.savedayweatherarray(dayweatherarray.joined(separator:","))
                     print("\nTEMP: \(maxweatherarray)")
+                    db.savemaxweatherarray(maxweatherarray.joined(separator:","))
                     print("\nTYPE: \(typeweatherarray)")
+                    db.savetypeweatherarray(typeweatherarray.joined(separator:","))
                     
                     climatetableview.delegate = self
                     climatetableview.dataSource = self
@@ -155,6 +208,9 @@ class landingViewController: UIViewController, ServiceCallDelegate, UITableViewD
                 else{
                     db.showAlerts("Error!", mg: "\nNo data found.", viewcontroller: self)
                 }
+                
+                //Saves last updated once a successful network occurs
+                db.saveLastUpdated(db.generateCurrentTimeStamp())
             }
         }
         catch let error{
@@ -188,4 +244,27 @@ class landingViewController: UIViewController, ServiceCallDelegate, UITableViewD
         return cell
     }
 
+}
+
+extension String {
+
+    func convertDateString() -> String? {
+        return convert(dateString: self, fromDateFormat: "yyyy-MM-dd HH:mm:ss", toDateFormat: "EEEE")
+    }
+
+    func convert(dateString: String, fromDateFormat: String, toDateFormat: String) -> String? {
+
+        let fromDateFormatter = DateFormatter()
+        fromDateFormatter.dateFormat = fromDateFormat
+
+        if let fromDateObject = fromDateFormatter.date(from: dateString) {
+
+            let toDateFormatter = DateFormatter()
+            toDateFormatter.dateFormat = toDateFormat
+
+            let newDateString = toDateFormatter.string(from: fromDateObject)
+            return newDateString
+        }
+        return nil
+    }
 }
