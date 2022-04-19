@@ -177,15 +177,16 @@ class landingViewController: UIViewController, ServiceCallDelegate, UITableViewD
                         dateweather = weatherListing.dt_txt!
                         print(dateweather)
                         dateweather = dateweather.convertDateString()!
-                        
+                    
                         tempe = "\(weatherListing.main.temp!)"
                         print(tempe)
                         
-                        let maincondition = response.list
-                        for weatherListing in maincondition{
-                            conditionweather = "\(weatherListing.main)"
+                        //let maincondition = response.list
+                        let maincondition = weatherListing.weather
+                        
+                        for weathertypeListing in maincondition{
+                            conditionweather = weathertypeListing.main!
                             print(conditionweather)
-                            
                         }
                         
                         dayweatherarray.append(dateweather)
@@ -237,7 +238,17 @@ class landingViewController: UIViewController, ServiceCallDelegate, UITableViewD
         let cell = climatetableview.dequeueReusableCell(withIdentifier: basicCellIdentifier) as! weatherTableViewCell
         if(dayweatherarray[indexPath.row] != ""){
             cell.lbmin.text = dayweatherarray[indexPath.row]
-            cell.imgweather.image = UIImage(named:"rain")
+            
+            if(typeweatherarray[indexPath.row] == "Cloudy" || typeweatherarray[indexPath.row] == "Clouds"){
+                cell.imgweather.image = UIImage(named:"partlysunny")
+            }
+            else if(typeweatherarray[indexPath.row] == "Sunny" || typeweatherarray[indexPath.row] == "Sun"){
+                cell.imgweather.image = UIImage(named:"clear")
+            }
+            else if(typeweatherarray[indexPath.row] == "Rainy" || typeweatherarray[indexPath.row] == "Rain"){
+                cell.imgweather.image = UIImage(named:"rain")
+            }
+            
             cell.lbmax.text = maxweatherarray[indexPath.row]
            
         }

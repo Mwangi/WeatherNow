@@ -40,6 +40,17 @@ struct MainWeather: Codable{
     //var icon: String?
 }
 
+//struct ForecastMainWeather: Codable{
+//    var weather: InsideForecatsMainWeather
+//}
+
+struct InsideForecastMainWeather: Codable{
+    //var id: Double?
+    var main: String?
+    //var description: String?
+    //var icon: String?
+}
+
 struct Forecast: Codable{
     var cod: String?
     var list: [ListForecastWeather]
@@ -47,13 +58,17 @@ struct Forecast: Codable{
 
 struct ListForecastWeather: Codable{
     //Just added the values I will need
-    var weather: [MainWeather]
+    var weather: [InsideForecastMainWeather]
     var dt_txt: String?
     var main: MainItem
 }
 
 struct WeatherList: Codable{
     var main: MainItem
+}
+
+struct WeatherType: Codable{
+    var main: String?
 }
 
 
