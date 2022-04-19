@@ -181,7 +181,6 @@ class landingViewController: UIViewController, ServiceCallDelegate, UITableViewD
                         tempe = "\(weatherListing.main.temp!)"
                         print(tempe)
                         
-                        //let maincondition = response.list
                         let maincondition = weatherListing.weather
                         
                         for weathertypeListing in maincondition{
@@ -193,6 +192,8 @@ class landingViewController: UIViewController, ServiceCallDelegate, UITableViewD
                         maxweatherarray.append(tempe)
                         typeweatherarray.append(conditionweather)
                     }
+                    
+                    //dayweatherarray = dayweatherarray.unique()
                     
                     print("\nDAYS: \(dayweatherarray)")
                     db.savedayweatherarray(dayweatherarray.joined(separator:","))
@@ -212,6 +213,7 @@ class landingViewController: UIViewController, ServiceCallDelegate, UITableViewD
                 
                 //Saves last updated once a successful network occurs
                 db.saveLastUpdated(db.generateCurrentTimeStamp())
+                lastupdateLbl.text = "Last Updated:\n\(db.getLastUpdated())"
             }
         }
         catch let error{
@@ -257,6 +259,7 @@ class landingViewController: UIViewController, ServiceCallDelegate, UITableViewD
 
 }
 
+//MARK: Converting the date received to a specific day
 extension String {
 
     func convertDateString() -> String? {
@@ -278,4 +281,25 @@ extension String {
         }
         return nil
     }
+    
+    //Usage
+    /**
+     Set the date format needed in the extension
+     let date =  "2022-04-19 12:00:00"
+     date = date.convertDateString()
+     */
+}
+
+//MARK: Helps in the removal of duplication of days / contents of an array
+extension Sequence where Iterator.Element: Hashable {
+    func unique() -> [Iterator.Element] {
+        var seen: [Iterator.Element: Bool] = [:]
+        return self.filter { seen.updateValue(true, forKey: $0) == nil }
+    }
+    
+    //Usage
+    /**
+     let days = ["Tuesday","Tuesday", "Tuesday", "Wednesday", "Thursday","Thursday", "Friday"]
+     days.unique // ["Tuesday", "Wednesday", "Thursday", "Friday"]
+     */
 }
